@@ -35,17 +35,31 @@ app.on('ready', () => {
 
 const menu = [
   ...(isMac ? [{ role: 'App Menu' }] : []),
-  {
-    label: 'File',
-    submenu: [
-      {
-        label: 'Quit',
-        // accelerator: 'isMac ? Command+W : Ctrl+W',
-        accelerator: 'CmdOrCtrl+W',
-        click: () => app.quit(),
-      },
-    ],
-  },
+  ...(isDevelopment
+    ? [
+        {
+          label: 'Developer',
+          submenu: [
+            { role: 'reload' },
+            { role: 'forcereload' },
+            { type: 'separator' },
+            { role: 'toggleDevTools' },
+          ],
+        },
+      ]
+    : []),
+  { role: 'fileMenu' },
+  // {
+  // label: 'File',
+  // submenu: [
+  //   {
+  //     label: 'Quit',
+  //     // accelerator: 'isMac ? Command+W : Ctrl+W',
+  //     accelerator: 'CmdOrCtrl+W',
+  //     click: () => app.quit(),
+  //   },
+  // ],
+  // },
 ];
 
 // if (isMac) {
